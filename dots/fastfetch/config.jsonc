@@ -1,0 +1,178 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "source": "$HOME/.config/fastfetch/arasaka_logo.png",
+        "type": "kitty",
+        "width": 50,
+        "preserveAspectRatio": true,
+        "position": "top",
+        "padding": {
+            "top": 1,
+            "left": 2
+        }
+    },
+    "display": {
+        "separator": "▌",
+        "color": {
+            "separator": "#ff4f47"
+        },
+        "key": {
+            "width": 18
+        },
+        "percent": {
+            "color": {
+                "green": "#45c2cd",
+                "yellow": "#ffd43f",
+                "red": "#ff4f47"
+            }
+        },
+        "bar": {
+            "border": null,
+            "char": {
+                "elapsed": "█ ",
+                "total": "░ "
+            },
+            "color": {
+                "total": "#ff4f47"
+            },
+            "width": 18
+        }
+    },
+    "modules": [
+        {
+            "type": "custom",
+            "format": " "
+        },
+        {
+            "type": "custom",
+            "format": "{#@196}╔══[ {#@226}ARASAKA // SECURE TERMINAL{#@196} ]══════════════════════╗"
+        },
+        {
+            "type": "custom",
+            "format": "{#@196}║ {#@51}CYBERDECK OS{#@196} ░▒▓               {#@226}荒坂社{#@196}  CORP         {#@196} ║"
+        },
+        {
+            "type": "custom",
+            "format": "{#@196}║ {#@51}ACCESS LEVEL {#@196}: {#@226}EXECUTIVE       {#@51}ICE {#@196}: ACTIVE          {#@196}║"
+        },
+        {
+            "type": "custom",
+            "format": "{#@196}╚══════════════════════════════════════════════════════╝"
+        },
+        {
+            "type": "custom",
+            "format": "{#@160}╠══●{#@196}━━━━━━━━━━━━━{#@160}● {#@51}NEURAL LINK {#@160}●{#@196}━━━━━━━━━━━━━━━━━━━━{#@160}●══╣"
+        },
+        {
+            "type": "custom",
+            "format": "{#@196}▰▰▰ {#@51}SYSTEM {#@196}▰▰▰ {#@160}[{#@226}0x01{#@160}]"
+        },
+        {
+            "type": "os",
+            "key": "{#@51}│ CYBERDECK   ",
+            "format": "ARASAKA MK5 {#@160}[{arch}]"
+        },
+        {
+            "type": "kernel",
+            "key": "{#@51}│ FIRMWARE    "
+        },
+        {
+            "type": "uptime",
+            "key": "{#@51}│ JACKED IN   "
+        },
+        {
+            "type": "packages",
+            "key": "{#@51}│ QUICKHACKS  "
+        },
+        {
+            "type": "custom",
+            "format": "{#@196}▰▰▰ {#@51}PERSONNEL {#@196}▰▰▰ {#@160}[{#@226}0x02{#@160}]"
+        },
+        {
+            "type": "users",
+            "key": "{#@51}│ HANDLE      ",
+            "format": "{name}, since {login-time}",
+            "myselfOnly": true
+        },
+        {
+            "type": "localip",
+            "key": "{#@51}│ NEURAL-LINK ",
+            "format": "SUBNET {ipv4} {#@160}// {#@51}LINK STABLE"
+        },
+        {
+            "type": "custom",
+            "format": "{#@196}▰▰▰ {#@51}CYBERWARE {#@196}▰▰▰ {#@160}[{#@226}0x03{#@160}]"
+        },
+        {
+            "type": "cpu",
+            "key": "{#@51}│ CPU         ",
+            "format": "{name}"
+        },
+        {
+            "type": "cpu",
+            "key": "{#@51}│ DAEMONS     ",
+            "format": "{cores-physical}C / {cores-logical}T"
+        },
+        {
+            "type": "gpu",
+            "key": "{#@51}│ OPTICS      ",
+            "format": "{name}"
+        },
+        {
+            "type": "custom",
+            "format": "{#@196}▰▰▰ {#@51}MEMORY {#@196}▰▰▰ {#@160}[{#@226}0x04{#@160}]"
+        },
+        {
+            "type": "memory",
+            "key": "{#@51}│ RAM         ",
+            "format": "{used} / {total}"
+        },
+        {
+            "type": "memory",
+            "key": "{#@51}│ BUFFER      ",
+            "percent": {
+                "type": [
+                    "bar",
+                    "hide-others"
+                ]
+            }
+        },
+        {
+            "type": "disk",
+            "folders": "/",
+            "key": "{#@51}│ SHARDS      ",
+            "format": "{size-used} / {size-total}"
+        },
+        {
+            "type": "disk",
+            "folders": "/",
+            "key": "{#@51}│ SHARD LOAD  ",
+            "percent": {
+                "type": [
+                    "bar",
+                    "hide-others"
+                ]
+            }
+        },
+        {
+            "type": "custom",
+            "format": " "
+        },
+        {
+            "type": "custom",
+            "format": "{#@196}╔══════════════════════════════════════════════════════╗"
+        },
+        {
+            "type": "custom",
+            "format": "{#@196}║ {#@51}BLACK ICE{#@196}: {#@226}ACTIVE {#@51}TRACE{#@196}: {#@226}0% {#@51}BREACH{#@196}: NULL {#@51}STATUS{#@196}: OK  {#@196}║"
+        },
+        {
+            "type": "custom",
+            "format": "{#@196}╚══════════════════════════════════════════════════════╝"
+        },
+        {
+            "type": "custom",
+            "format": "{#@160}AUTHORIZED PERSONNEL ONLY {#@196}// {#@51}荒坂社 {#@160}// {#@196}ARASAKA CORPORATION"
+        }
+    ]
+}

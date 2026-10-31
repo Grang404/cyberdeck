@@ -1,0 +1,16 @@
+directions = "all"
+duration_ms = 400
+fade_ms = 350
+fade_steps = 10
+fps = 60
+color = "#ff4f47"
+head_color = "#ff4f47"
+trail = 10
+rest = 0.45
+speed = 0
+speed_spread = 3
+stagger = 0.9
+glitch = 0.02
+chars = "2800-28FF"
+color_mode = "auto"
+clear_scrollback = true

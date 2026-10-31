@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SHADER="${GHOSTFX_SHADER:-$HOME/.config/ghostty/shaders/cyberpunk.glsl}"
+
+declare -A CONST=(
+    [glow]=BLOOM_STRENGTH
+    [ca]=CA_PX
+    [scan]=SCANLINE_STRENGTH
+    [flicker]=FLICKER_STRENGTH
+    [glitch]=GLITCH_PER_SEC
+    [trail]=TRAIL_STRENGTH
+)
+declare -A DEFAULT=(
+    [glow]=0.55
+    [ca]=1.2
+    [scan]=0.25
+    [flicker]=0.02
+    [glitch]=0.4
+    [trail]=0.5
+)
+EFFECTS=(glow ca scan flicker glitch trail)
+
+usage() {
+    cat <<EOF
+Usage: ghostfx <on|off|toggle> <effect...|all>
+       ghostfx set <effect> <value>
+       ghostfx status
+
+Effects: ${EFFECTS[*]}
+EOF
+    exit 1
+}
+
+get() {
+    sed -n "s/^const float ${CONST[$1]} = \(.*\);/\1/p" "$SHADER"
+}
+
+put() {
+    local val=$2
+    [[ $val == *.* ]] || val="$val.0"
+    sed -i "s/^const float ${CONST[$1]} = .*;/const float ${CONST[$1]} = $val;/" "$SHADER"
+}
+
+is_off() {
+    awk -v v="$(get "$1")" 'BEGIN { exit !(v + 0 == 0) }'
+}
+
+check_effect() {
+    [[ -n ${CONST[$1]:-} ]] || { echo "Unknown effect: $1" >&2; usage; }
+}
+
+status() {
+    local e
+    for e in "${EFFECTS[@]}"; do
+        if is_off "$e"; then
+            printf '%-8s off\n' "$e"
+        else
+            printf '%-8s on  (%s)\n' "$e" "$(get "$e")"
+        fi
+    done
+}
+
+reload() {
+    pkill -USR2 -x ghostty 2>/dev/null || true
+}
+
+[[ -f $SHADER ]] || { echo "Shader not found: $SHADER" >&2; exit 1; }
+[[ $# -ge 1 ]] || usage
+
+cmd=$1
+shift
+
+case $cmd in
+    status)
+        status
+        exit 0
+        ;;
+    set)
+        [[ $# -eq 2 ]] || usage
+        check_effect "$1"
+        [[ $2 =~ ^[0-9]+(\.[0-9]+)?$ ]] || { echo "Value must be a number: $2" >&2; exit 1; }
+        put "$1" "$2"
+        ;;
+    on|off|toggle)
+        [[ $# -ge 1 ]] || usage
+        targets=("$@")
+        [[ $1 == all ]] && targets=("${EFFECTS[@]}")
+        for e in "${targets[@]}"; do
+            check_effect "$e"
+            action=$cmd
+            if [[ $action == toggle ]]; then
+                is_off "$e" && action=on || action=off
+            fi
+            if [[ $action == on ]]; then
+                put "$e" "${DEFAULT[$e]}"
+            else
+                put "$e" 0.0
+            fi
+        done
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+reload
+status

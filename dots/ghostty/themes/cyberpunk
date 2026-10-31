@@ -1,0 +1,47 @@
+background = #281419
+foreground = #ff4f47
+cursor-color = #45c2cd
+
+# Black / Bright Black
+palette = 0=#3f1215
+palette = 8=#3f1215
+
+# Red / Bright Red
+palette = 1=#ff4f47
+palette = 9=#ff4f47
+
+# Green / Bright Green
+palette = 2=#26d073
+palette = 10=#26d073
+
+# Yellow / Bright Yellow
+palette = 3=#ffd43f
+palette = 11=#ffd43f
+
+# Blue / Bright Blue
+palette = 4=#45c2cd
+palette = 12=#45c2cd
+
+# Magenta / Bright Magenta
+palette = 5=#ff4f47
+palette = 13=#ff4f47
+
+# Cyan / Bright Cyan
+palette = 6=#45c2cd
+palette = 14=#45c2cd
+
+# White / Bright White
+palette = 7=#29757b
+palette = 15=#29757b
+
+background-opacity = 0.8
+background-blur = true
+
+font-family = "Rajdhani Mono"
+font-style = SemiBold
+font-size = 16
+font-feature = -liga
+font-feature = -calt
+
+window-decoration = none
+gtk-tabs-location = hidden

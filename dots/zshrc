@@ -1,0 +1,111 @@
+fastfetch
+
+autoload -Uz vcs_info add-zsh-hook compinit
+compinit
+
+precmd() {
+	print ""
+}
+
+_cp_precmd() { vcs_info }
+add-zsh-hook precmd _cp_precmd
+
+PROMPT_EOL_MARK=""
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+LISTMAX=50000
+
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST    # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt HIST_IGNORE_DUPS          # ignore duplicated commands history list
+setopt HIST_IGNORE_SPACE         # ignore commands that start with space
+setopt HIST_VERIFY               # show command with history expansion to user before running it
+setopt INC_APPEND_HISTORY        # add commands to HISTFILE in order of execution
+setopt SHARE_HISTORY             # share command history data
+setopt AUTO_CD              # cd by typing directory name if it's not a command
+setopt CORRECT              # auto correct mistakes
+setopt INTERACTIVECOMMENTS  # allow comments in interactive mode
+setopt MAGICEQUALSUBST      # enable filename expansion for arguments of the form 'anything=expression'
+setopt NONOMATCH            # hide error message if there is no match for the pattern
+setopt NUMERICGLOBSORT      # sort filenames numerically when it makes sense
+setopt PROMPTSUBST          # enable command substitution in prompt
+
+
+source "$HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOME/.config/zsh/highlight_styles.zsh"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+bindkey -v
+
+bindkey -v '^?' backward-delete-char
+bindkey -v '^H' backward-delete-char
+bindkey -v '^W' backward-kill-word
+bindkey -v '^U' backward-kill-line
+bindkey -v '^[[3~' delete-char
+
+function vi-yank-wl {
+    zle vi-yank
+    echo -n "$CUTBUFFER" | wl-copy
+}
+zle -N vi-yank-wl
+bindkey -M vicmd 'y' vi-yank-wl
+
+function vi-put-wl {
+    CUTBUFFER=$(wl-paste)
+    zle vi-put-after
+}
+zle -N vi-put-wl
+bindkey -M vicmd 'p' vi-put-wl
+
+function vi-yank-whole-line-wl {
+    echo -n "$BUFFER" | wl-copy
+}
+zle -N vi-yank-whole-line-wl
+bindkey -M vicmd 'Y' vi-yank-whole-line-wl
+
+function zle-line-init zle-keymap-select {
+    case ${KEYMAP} in
+        vicmd)      print -n '\e[1 q';; # Block cursor
+        viins|main) print -n '\e[5 q';; # Beam cursor
+    esac
+}
+
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+bindkey "^[[1;5C" forward-word      # Ctrl+Right arrow
+bindkey "^[[1;5D" backward-word     # Ctrl+Left arrow
+bindkey "^[[3~" delete-char         # Delete key
+bindkey "^[[H" beginning-of-line    # Home key
+bindkey "^[[F" end-of-line          # End key
+bindkey "^[[1;3C" forward-word      # Alt+Right arrow
+bindkey "^[[1;3D" backward-word     # Alt+Left arrow
+bindkey "^H" backward-kill-word     # Ctrl+Backspace
+bindkey "^[[3;5~" kill-word         # Ctrl+Delete
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' unstagedstr '*'
+zstyle ':vcs_info:git:*' stagedstr '+'
+zstyle ':vcs_info:git:*' formats '%b%u%c'
+zstyle ':vcs_info:git:*' actionformats '%b|%a%u%c'
+
+
+CP_C='%F{#45C2CD}'
+CP_R='%F{#FF4F47}'
+CP_D='%F{#29757b}'
+CP_BLK='%K{#FF4F47}%F{#000000}'
+
+PROMPT='${CP_BLK}%B ${(U)USER}@${(U)HOST%%.*} //%b%k%f${CP_R}▌%f ${CP_C}%~%f${vcs_info_msg_0_:+ ${CP_D}░%f ${CP_R}${vcs_info_msg_0_}%f}%(?.. ${CP_D}░%f ${CP_R}%BERR:%?%b%f)
+${CP_R}▌%f${CP_R}%B>>%b%f '
+RPROMPT='${CP_D}[%D{%H:%M:%S}]%f'
+
+alias clear="neoclear --config $HOME/.config/neoclear/config.toml"
+alias ls="eza"
+
+source "$HOME/.aliases"
+
+export MANPAGER="nvim +Man!"

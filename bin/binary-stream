@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+exec {fd}<> <(:)
+while :; do
+    printf '%d' $((RANDOM & 1))
+    read -rt 0.01 -u "$fd"
+done
