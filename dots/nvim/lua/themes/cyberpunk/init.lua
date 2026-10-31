@@ -1,5 +1,5 @@
 local c = require("themes.cyberpunk.colors")
-local cfg = require("themes.groob.config").config
+local cfg = require("themes.cyberpunk.config").config
 local M = {}
 
 local set_terminal_colors = function()

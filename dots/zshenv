@@ -2,7 +2,7 @@ typeset -U path
 path=("$HOME/.local/bin" $path)
 export PATH
 export ARCHFLAGS="-arch $(uname -m)"
-export EZA_CONFIG_DIR="$DOTS/eza"
+# export EZA_CONFIG_DIR="$DOTS/eza"
 export EDITOR='nvim'
 export KEYTIMEOUT=1
 

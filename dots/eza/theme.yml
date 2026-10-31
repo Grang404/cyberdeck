@@ -14,7 +14,7 @@ filekinds:
   socket:
     foreground: Default
   special:
-    foreground:
+    foreground: Default
   executable:
     foreground: Yellow
   mount_point:
