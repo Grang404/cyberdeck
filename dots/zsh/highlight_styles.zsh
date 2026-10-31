@@ -42,7 +42,6 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-3]=fg=red,bold
 ZSH_HIGHLIGHT_STYLES[bracket-level-4]=fg=yellow,bold
 ZSH_HIGHLIGHT_STYLES[bracket-level-5]=fg=cyan,bold
 ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]=standout
-
 ZSH_HIGHLIGHT_STYLES[command]=fg=red
 ZSH_HIGHLIGHT_STYLES[alias]=fg=red
 ZSH_HIGHLIGHT_STYLES[builtin]=fg=cyan

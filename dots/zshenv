@@ -1,1 +1,13 @@
-export PATH="$HOME/.local/bin:$PATH"
+typeset -U path
+path=("$HOME/.local/bin" $path)
+export PATH
+export ARCHFLAGS="-arch $(uname -m)"
+export EZA_CONFIG_DIR="$DOTS/eza"
+export EDITOR='nvim'
+export KEYTIMEOUT=1
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export MANPAGER="nvim +Man!"

@@ -1,0 +1,19 @@
+# Aliases
+alias vim='nvim'
+alias venv='[[ -d .venv ]] && source .venv/bin/activate || python -m venv .venv && source .venv/bin/activate'
+alias scratch='nvim /tmp/scratch.md'
+alias hg='history 1 | grep'
+alias sdn='shutdown now'
+
+
+alias clear="neoclear --config $HOME/.config/neoclear/config.toml"
+alias ls="eza"
+alias ll='eza -lF'
+alias la='eza -A'
+
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+
+v() { nvim "${1:-.}"; }
