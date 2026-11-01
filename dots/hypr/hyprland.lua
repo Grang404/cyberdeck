@@ -6,3 +6,7 @@ require("keybinds")
 require("animations")
 require("monitors")
 require("devices")
+
+require("device-keybinds")
+
+require("workspaces")

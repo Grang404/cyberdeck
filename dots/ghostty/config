@@ -9,6 +9,8 @@ clipboard-write = allow
 clipboard-trim-trailing-spaces = true
 shell-integration = zsh
 bell-features = no-audio,no-system,no-attention,no-title
+scrollbar = never
+
 
 keybind = ctrl+shift+t=unbind
 keybind = ctrl+tab=unbind

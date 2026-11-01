@@ -47,16 +47,6 @@ hl.bind("CONTROL + SHIFT + L", hl.dsp.window.move({ direction = "down" })) -- Mo
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true }) -- Drag Window
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true }) -- Resize Window
 
--- KEYBIND: CONTROL + 0-9 → Focus Workspace
--- KEYBIND: CONTROL + SHIFT + 0-9 → Move Window to Workspace
--- KEYBINDS_SKIP_START
-for i = 1, 9 do
-	local key = i % 10
-	hl.bind("CONTROL + " .. key, hl.dsp.focus({ workspace = i })) -- Move to i Workspace
-	hl.bind("CONTROL + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
-end
--- KEYBINDS_SKIP_END
-
 -- KEYBIND: Volume Up
 hl.bind(
 	"XF86AudioRaiseVolume",
