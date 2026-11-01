@@ -18,5 +18,8 @@ keybind = ctrl+shift+tab=unbind
 
 mouse-scroll-multiplier = 1
 
+working-directory = home
+window-inherit-working-directory = false
+
 custom-shader = shaders/cyberpunk.glsl
 custom-shader-animation = always

@@ -1,8 +1,10 @@
 import Quickshell
 import Quickshell.Io
+import qs.widgets
 
 ShellRoot {
     Bar {}
+    Desktop {}
 
     IpcHandler {
         target: "theme"
