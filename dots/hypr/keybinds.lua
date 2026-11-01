@@ -13,9 +13,9 @@ hl.bind("SUPER + I", hl.dsp.exec_cmd("groob-wallpaper")) -- Wallpaper Picker
 hl.bind("SUPER + ALT + I", hl.dsp.exec_cmd("groob-randompaper")) -- Random Wallpaper
 hl.bind("SUPER + P", hl.dsp.exec_cmd(hyprshot_region)) -- Screenshot Region
 hl.bind("CONTROL + SUPER + P", hl.dsp.exec_cmd(hyprshot_file)) -- Screenshot File
--- TODO: Add Full screenshot
 hl.bind("SUPER + L", hl.dsp.exec_cmd("hyprlock")) -- Lock Screen
 hl.bind("CONTROL + ALT + X", hl.dsp.exec_cmd("hyprpicker -a")) -- Color Picker
+hl.bind("SUPER + T", hl.dsp.exec_cmd("qs ipc call widgets toggle")) -- Toggle Widgets
 
 -- Workspaces
 
