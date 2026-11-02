@@ -69,14 +69,14 @@ WidgetFrame {
         spacing: 3
 
         Repeater {
-            model: root.rows
+            model: root.rows.length
 
             delegate: Row {
-                required property var modelData
+                required property int index
 
                 GlowText {
                     width: 72
-                    text: modelData[0]
+                    text: root.rows[index][0]
                     pixelSize: 12
                     color: Theme.secondary
                     ghostColor: Theme.primary
@@ -86,7 +86,7 @@ WidgetFrame {
                 }
 
                 GlowText {
-                    text: modelData[1]
+                    text: root.rows[index][1]
                     pixelSize: 12
                     color: Theme.primary
                     glow: 0.3

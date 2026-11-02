@@ -29,10 +29,15 @@ WidgetFrame {
     title: "NET.LOG"
     code: "TRACE//OFF"
 
+    ListModel {
+        id: logModel
+    }
+
     function push() {
         const m = messages[Math.floor(Math.random() * messages.length)]
-        const entry = { t: Qt.formatDateTime(clock.date, "hh:mm:ss"), msg: m[0].toUpperCase(), lvl: m[1] }
-        lines = lines.concat([entry]).slice(-maxLines)
+        logModel.append({ t: Qt.formatDateTime(clock.date, "hh:mm:ss"), msg: m[0].toUpperCase(), lvl: m[1] })
+        while (logModel.count > maxLines)
+            logModel.remove(0)
         tick.interval = 600 + Math.random() * 2200
     }
 
@@ -59,17 +64,19 @@ WidgetFrame {
         spacing: 1
 
         Repeater {
-            model: root.lines
+            model: logModel
 
             delegate: Row {
-                required property var modelData
+                required property string t
+                required property string msg
+                required property int lvl
                 required property int index
 
                 spacing: 8
-                opacity: 0.35 + 0.65 * (index + 1) / root.lines.length
+                opacity: 0.35 + 0.65 * (index + 1) / logModel.count
 
                 GlowText {
-                    text: "[" + modelData.t + "]"
+                    text: "[" + t + "]"
                     pixelSize: 11
                     color: Theme.dim
                     glow: 0
@@ -78,11 +85,11 @@ WidgetFrame {
                 }
 
                 GlowText {
-                    text: modelData.msg
+                    text: msg
                     pixelSize: 11
-                    color: modelData.lvl === 2 ? Theme.accent : (modelData.lvl === 1 ? Theme.secondary : Theme.primary)
+                    color: lvl === 2 ? Theme.accent : (lvl === 1 ? Theme.secondary : Theme.primary)
                     glow: 0.3
-                    glitch: modelData.lvl === 2
+                    glitch: lvl === 2
                 }
             }
         }
